@@ -24,5 +24,5 @@ jobs:
           MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
         run: |
           cd pricely
-          scrapy crawl wellbees_spider
+          scrapy crawl welbees_spider
           scrapy crawl greens_spider
