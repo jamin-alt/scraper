@@ -1,0 +1,28 @@
+name: Run Scraper Twice Daily
+
+on:
+  schedule:
+    - cron: '0 1,13 * * *' # runs at 06:00 and 18:00 UTC
+  workflow_dispatch:
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scrapy python-dotenv pymongo beautifulsoup4 requests
+      - name: Run scrapy spider
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+        run: |
+          cd pricely
+          scrapy crawl wellbees_spider
+          scrapy crawl greens_spider
