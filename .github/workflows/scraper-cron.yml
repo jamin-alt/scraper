@@ -26,3 +26,4 @@ jobs:
           cd pricely
           scrapy crawl welbees_spider
           scrapy crawl greens_spider
+          scrapy crawl spar_spider
