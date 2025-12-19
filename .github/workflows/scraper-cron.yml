@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install scrapy python-dotenv pymongo beautifulsoup4 requests
+          pip install -r requirements.txt
       - name: Run scrapy spider
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
