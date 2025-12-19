@@ -9,53 +9,277 @@ from sklearn.metrics.pairwise import cosine_similarity
 from pricely.settings import EMBEDDING_MODEL, MATCH_THRESHOLD
 
 cat = {
-    # BUTCHER
-    ("butcher", "butcher counter", "meat"): "butcher",
-    # BAKERY
-    ("bakery", "bread", "cakes", "pastries"): "bakery",
-    # BABY
-    ("baby",): "baby products",
-    # CHILLED & DAIRY
-    ("chilledanddairy", "chilled food", "dairy", "eggs", "cheese"): "chilled and dairy",
-    # BEVERAGES
-    ("beverages", "drinks", "soft drinks", "water", "juice", "energy drinks", "ice tea", "milkshake", "smoothies"): "beverages",
-    # FRUIT & VEG
-    ("fruitsandvegetables", "fruit & veg counter", "fruit", "vegetables", "salads"): "fruit and veg",
-    # CONFECTIONERY
-    ("confectionery", "sweets", "chocolate", "biscuits", "wafers", "crackers"): "confectionery",
-    # FISH
-    ("fish", "seafood", "fish counter"): "fish and seafood",
-    # HEALTH & BEAUTY / COSMETICS
-    ("cosmetic", "cosmetics", "costetic", "health & beauty", "personal care", "beauty", "skincare", "haircare", "oral care", "soap", "handwash", "feminine care", "shaving"): "health and beauty",
-    # DELICATESSEN
-    ("delicatessen", "deli", "deli counter", "prepack ham", "antipasti"): "food and delicatessen",
-    # FLOWERS & PLANTS
-    ("flowersandplants", "flowers", "plants"): "flowers and plants",
-    # FROZEN
-    ("frozenfoods", "frozen", "foods", "frozen food", "ice cream", "desserts"): "foods and frozen foods",
-    # GROCERIES
-    ("groceries", "food cupboard", "pasta", "rice", "noodles", "tins", "jars", "oil", "vinegar", "condiments", "sauces", "cooking ingredients", "baking", "sugar", "flour", "herbs", "spices", "world foods"): "groceries",
-    # PETS
-    ("pets", "cat", "dog", "pet food", "pet accessories"): "pets",
-    # WINE & ALCOHOL
-    ("winecellar", "wine", "beers", "ciders", "spirits", "liqueurs"): "wine and alcohol",
-    # HOUSEHOLD
-    ("household", "cleaning", "laundry", "toilet roll", "kitchen roll", "paper products", "bin liners", "air fresheners"): "household",
-    # HOME & GARDEN
-    ("homegarden", "home & entertainment", "homeware", "kitchenware", "utensils"): "home and garden",
-    # HEALTH
-    ("health", "healthy section", "dietary", "free from", "gluten free", "organic", "fitness", "vitamins", "supplements"): "health and wellness",
-    # NEW / SEASONAL
-    ("new", "christmas hampers", "christmas", "seasonal", "halloween"): "seasonal and new",
-    # STATIONERY & PARTY
-    ("stationery", "office", "party supplies", "batteries", "crafts", "toys"): "stationery and party",
-    # CLOTHING & FOOTWEAR
-    ("clothing", "footwear", "socks", "tights", "slippers", "sandals"): "clothing and footwear",
-    # ANTI-FLU / HEALTH SAFETY
-    ("anti-flu", "disinfectants", "face masks", "wipes", "sanitizers"): "health and safety",
-    # OTHER
-    ("tobacco", "cigarettes", "lighters"): "tobacco",
-    ("Others Not Shown On Website",): "others"
+    # ================= BUTCHER / MEAT =================
+    (
+        "butcher", "butcher counter", "meat",
+        "bacon", "burgers bbq meat", "pork", "sausages",
+        "prepack hams cheese antipasti", "corned beef chopped ham"
+    ): "butcher",
+
+    # ================= BAKERY =================
+    (
+        "bakery", "bread", "cakes", "pastries",
+        "fresh maltese bread", "sliced breads buns rolls",
+        "fresh baked breads", "dietary gluten free bread",
+        "baked croissants pastry savouries",
+        "traditional maltese cakes",
+        "traditional maltese confectionery",
+        "wrapped cakes", "confectionary croissants sponges",
+        "donuts", "muffins",
+        "naan pitta bread", "wraps tortillas", "croutons"
+    ): "bakery",
+
+    # ================= BABY =================
+    (
+        "baby",
+        "baby dummies soothers", "baby bottles",
+        "baby feeding utensils", "baby cleaning accessories",
+        "baby mum to be", "baby healthcare accessories",
+        "baby infant milk", "baby cereals",
+        "baby rusks biscuits", "baby meat veg jars",
+        "baby snacks", "baby fruit jars",
+        "baby food fruit pouches", "baby pasta",
+        "baby nappies bed pads", "baby pullup swim nappies",
+        "baby wash skin care", "baby laundry",
+        "baby wipes", "baby cotton wool buds sponges"
+    ): "baby products",
+
+    # ================= CHILLED & DAIRY =================
+    (
+        "chilledanddairy", "chilled food", "dairy",
+        "butter margarine spreads", "cheese", "cream",
+        "eggs", "milk", "yoghurts",
+        "cheese cream spreads",
+        "desserts snacks", "cream desserts",
+        "pizza pasta sauces", "pate dips dressing antipasto",
+        "fresh pastry"
+    ): "chilled and dairy",
+
+    # ================= BEVERAGES =================
+    (
+        "beverages", "drinks",
+        "soft drinks", "soft drinks packs",
+        "energy drinks", "sports drinks",
+        "vitamin herbal drinks",
+        "organic drinks",
+        "ice tea",
+        "ready made milkshake yogurt",
+        "chilled smoothies ice coffee",
+        "chilled fresh fruit juice",
+        "organic juice", "long life juice",
+        "fruit milk squashes",
+        "water flavoured", "water sparkling",
+        "water still", "water packs"
+    ): "beverages",
+
+    # ================= WINE & ALCOHOL =================
+    (
+        "winecellar", "wine", "beers", "ciders",
+        "beers lagers", "bitters stouts",
+        "cider", "non alcoholic beers ciders",
+        "brandy cognac", "gin", "liqueurs",
+        "mixers", "sherry port", "vodka",
+        "ready to serve", "tequila other spirits",
+        "rum", "whisky", "vermouth",
+        "champagne sparkling wine", "dessert wine",
+        "red wine", "rose wine", "white wine",
+        "non alcoholic wines",
+        "non alcoholic aperitifs"
+    ): "wine and alcohol",
+
+    # ================= FRUIT & VEGETABLES =================
+    (
+        "fruitsandvegetables", "fruit & veg counter",
+        "fresh fruit", "prepared fruit veg",
+        "salads prewashed", "vegetables"
+    ): "fruit and veg",
+
+    # ================= FLOWERS & PLANTS =================
+    (
+        "flowersandplants", "flowers", "plants"
+    ): "flowers and plants",
+
+    # ================= DELICATESSEN =================
+    (
+        "delicatessen", "deli", "deli counter",
+        "deli cheese", "deli hams",
+        "deli savouries olives",
+        "prepack hams cheese antipasti"
+    ): "food and delicatessen",
+
+    # ================= HEALTH & SAFETY =================
+    (
+        "anti flu", "anti-flu",
+        "face masks", "sanitizers",
+        "hand sanitizers",
+        "disinfectants", "multi surface wipes",
+        "personal wipes"
+    ): "health and safety",
+
+    # ================= CONFECTIONERY =================
+    (
+        "confectionery", "sweets", "chocolate",
+        "biscuits", "wafers", "crackers",
+        "chewing gum", "chocolates",
+        "traditional sweets"
+    ): "confectionery",
+
+    # ================= CLOTHING & FOOTWEAR =================
+    (
+        "clothing", "clothes", "clothes & accessories",
+        "footwear", "shoes",
+        "slippers", "sandals",
+        "socks", "tights", "garments"
+    ): "clothing and footwear",
+
+    # ================= FISH & SEAFOOD =================
+    (
+        "fish", "seafood", "fish counter",
+        "fish seafood tins",
+        "caviar salmon fish",
+        "fish seafood counter"
+    ): "fish and seafood",
+
+    # ================= GROCERIES / FOOD CUPBOARD =================
+    (
+        "groceries", "food cupboard",
+        "pasta", "rice", "noodles",
+        "pasta regular", "pasta special diet",
+        "rice regular", "rice special diet",
+        "noodles regular", "noodles pot noodles",
+        "cous cous",
+        "tins", "jars",
+        "fruit tins", "vegetables tins jars",
+        "tomatoes tins jars",
+        "oil vinegar", "condiments", "sauces",
+        "ready to serve sauces chutneys",
+        "gravy stock cubes",
+        "herbs spices salt",
+        "baking mixes", "flour yeast baking powder",
+        "sugar", "icing sugar", "brown sugar", "sweeteners",
+        "honey spreads nutella", "jams marmalades",
+        "dried fruit", "nuts", "seeds",
+        "dried pulses grains",
+        "oriental", "indian", "mexican",
+        "arabic", "russian eastern europe", "nepalese"
+    ): "groceries",
+
+    # ================= FROZEN =================
+    (
+        "frozenfoods", "frozen", "frozen food",
+        "ice cream", "ice cream packs tubs",
+        "ice cream single units",
+        "frozen burgers sausages", "frozen meat",
+        "frozen poultry game",
+        "frozen fish seafood",
+        "frozen ready meals",
+        "frozen pizza bread",
+        "frozen pastizzi pies",
+        "frozen ravioli tortellini",
+        "frozen pastry sheets pizza bases",
+        "frozen potatoes fries chips",
+        "frozen fruit veg",
+        "frozen vegetarian gluten free"
+    ): "foods and frozen foods",
+
+    # ================= HEALTH & BEAUTY =================
+    (
+        "cosmetic", "cosmetics", "costetic",
+        "health & beauty", "personal care",
+        "beauty", "skincare", "haircare",
+        "oral care", "soap", "handwash",
+        "feminine care", "shaving",
+        "toothpaste", "toothbrushes",
+        "mouthwash", "dental floss",
+        "bodywash bath foams",
+        "hair shampoos", "hair conditioners",
+        "hair colourants masks",
+        "styling products",
+        "mens skincare", "mens shower gel",
+        "female body sprays perfumes",
+        "liners accessories intimate care",
+        "towels tampons"
+    ): "health and beauty",
+
+    # ================= HOUSEHOLD & CLEANING =================
+    (
+        "household",
+        "cleaning", "laundry",
+        "dishwasher tabs rinse aid",
+        "dishwashing liquids",
+        "cloths sponges dusters",
+        "rubber gloves",
+        "bleach disinfectants",
+        "wc cleaners", "bathroom cleaners",
+        "floor cleaners", "kitchen cleaners",
+        "window cleaners",
+        "fabric conditioners",
+        "laundry washing powder",
+        "laundry washing liquid gel",
+        "bin liners", "kitchen roll",
+        "toilet roll", "tissues",
+        "air fresheners room sprays"
+    ): "household",
+
+    # ================= PETS =================
+    (
+        "pets", "cat", "dog",
+        "cat litter", "cat canned food",
+        "cat dry food treats",
+        "cat pouches trays",
+        "dog accessories toys",
+        "dog shampoo conditioner",
+        "dog canned food",
+        "dog dry food treats",
+        "dog pouches trays",
+        "frozen dog food"
+    ): "pets",
+
+    # ================= HOME & GARDEN =================
+    (
+        "homegarden", "home & entertainment",
+        "homeware", "kitchenware", "utensils",
+        "bath towels face cloths",
+        "ironmongery tools"
+    ): "home and garden",
+
+    # ================= HEALTH / WELLNESS =================
+    (
+        "health", "healthy section",
+        "dietary", "free from",
+        "gluten free", "organic",
+        "fitness", "vitamins",
+        "supplements", "speciality fitness",
+        "vitamins food supplements"
+    ): "health and wellness",
+
+    # ================= SEASONAL / NEW =================
+    (
+        "new", "seasonal",
+        "halloween", "halloween chocolates cakes",
+        "christmas", "christmas hampers",
+        "christmas panettone pandoro",
+        "christmas wines spirits",
+        "christmas chocolates candy",
+        "christmas toys board games",
+        "christmas table tree decorations"
+    ): "seasonal and new",
+
+    # ================= STATIONERY & PARTY =================
+    (
+        "stationery", "office",
+        "party supplies", "party occasions items",
+        "batteries", "usb cables",
+        "crafts", "toys"
+    ): "stationery and party",
+
+    # ================= TOBACCO =================
+    (
+        "tobacco", "cigarettes", "lighters"
+    ): "tobacco",
+
+    # ================= FALLBACK =================
+    ("Others Not Shown On Website",): "others",
 }
 
 class PricelyPipeline:
@@ -104,6 +328,7 @@ class PricelyPipeline:
         for keys, values in self.CATEGORY_MAP.items():
             if self.category in (k.lower() for k in keys):
                 return values.lower()
+            return "others"
 
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)

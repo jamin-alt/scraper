@@ -106,7 +106,7 @@ class WellbeesSpider(scrapy.Spider):
             next_page_url,
             callback=self.parse,
             meta={
-                "category": category.tit,
+                "category": category,
                 "cat_id": cat_id,
                 "page": next_page_num,
                 "prev_first_code": current_first_code
