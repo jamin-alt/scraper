@@ -67,6 +67,9 @@ ITEM_PIPELINES = {
 MONGO_URI = "mongodb+srv://onuegbujamin_db_user:EdmZNNQzFZ8cYoEL@cluster0.vaa9jjd.mongodb.net/?appName=Cluster0"
 MONGO_DATABASE = "pricely_db"
 
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+MATCH_THRESHOLD = 0.80
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True

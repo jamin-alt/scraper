@@ -24,6 +24,7 @@ class MyScraper:
 
 class WellbeesSpider(scrapy.Spider):
     name = "welbees_spider"
+    vendor = "Welbees"
 
     categories = {
         "D-5430":"Baby",
@@ -92,8 +93,8 @@ class WellbeesSpider(scrapy.Spider):
             item["name"] = data.get("description")
             item["image"] = data.get("image")
             item["price"] = data.get("selling_price_value")
-            item["vendor"] = "Welbees"
-            item["categories"] = category
+            item["vendor"] = self.vendor
+            item["category"] = category
             item["url"] = response.url
 
             yield item
@@ -105,7 +106,7 @@ class WellbeesSpider(scrapy.Spider):
             next_page_url,
             callback=self.parse,
             meta={
-                "category": category,
+                "category": category.tit,
                 "cat_id": cat_id,
                 "page": next_page_num,
                 "prev_first_code": current_first_code

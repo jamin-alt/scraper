@@ -14,5 +14,7 @@ class PricelyItem(scrapy.Item):
     price = scrapy.Field()
     url = scrapy.Field()
     vendor = scrapy.Field()
-    categories = scrapy.Field()
+    category = scrapy.Field()
+    confidence = scrapy.Field()
+    canonical_product_id = scrapy.Field()
     scraped_at = scrapy.Field()

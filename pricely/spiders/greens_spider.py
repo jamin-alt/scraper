@@ -102,7 +102,7 @@ class ScraperSpider(scrapy.Spider):
             item['url'] = product_image_and_url.get('item_url', '')
 
             item['price'] = product["ProductDetails"]['SALES_PRICE']
-            item['categories'] = product["ProductDetails"]["GROUP_1"]
+            item['category'] = product["ProductDetails"]["GROUP_1"]
             item['vendor'] = self.vendor_tag
             print(item)
 
