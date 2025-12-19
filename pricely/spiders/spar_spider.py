@@ -468,7 +468,6 @@ class ScraperSpider(scrapy.Spider):
             item['category'] = self.category
             item['vendor'] = self.vendor_tag
             item["url"] = self.url
-            print(item)
             yield item
 
 

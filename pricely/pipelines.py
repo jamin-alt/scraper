@@ -324,7 +324,6 @@ class PricelyPipeline:
     
     def categorize(self, product):
         self.category = str(product.get("category")).lower()
-        print(f"Category: {self.category}")
         for keys, values in self.CATEGORY_MAP.items():
             if self.category in (k.lower() for k in keys):
                 return values.lower()
@@ -382,7 +381,6 @@ class PricelyPipeline:
         for c in candidates:
             embedding = np.array(c["embedding"], dtype=np.float32)
             self.score = cosine_similarity([self.store_vec], [embedding])[0][0]
-            print(f"SCORE: {self.score}")
             if self.score > self.best_score:
                 self.best_score = self.score
                 self.best_canonical = c
