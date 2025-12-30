@@ -24,6 +24,5 @@ jobs:
           MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
         run: |
           cd pricely
-          scrapy crawl welbees_spider
-          scrapy crawl greens_spider
-          scrapy crawl spar_spider
+          python run_all.py
+          
