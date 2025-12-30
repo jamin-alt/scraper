@@ -104,6 +104,5 @@ class ScraperSpider(scrapy.Spider):
             item['price'] = product["ProductDetails"]['SALES_PRICE']
             item['category'] = product["ProductDetails"]["GROUP_1"]
             item['vendor'] = self.vendor_tag
-            print(item)
 
             yield item

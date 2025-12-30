@@ -338,7 +338,6 @@ class PricelyPipeline:
         product_id = f"{vendor_slug}-{name_slug}"
 
         self.category = self.categorize(adapter)
-        print(self.category)
         self.text = self.normalize(adapter.get("name", "") + " " + self.category)
 
         self.result = self.find_best_match(self.text, self.category)

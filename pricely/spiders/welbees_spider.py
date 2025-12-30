@@ -20,7 +20,14 @@ class MyScraper:
         except:
             return None
 
+class Check_last:
+    def __init__(self, categories):
+        self.categories_list = categories
 
+    def open_mongo_con(self):
+        pass
+
+    # def check
 
 class WellbeesSpider(scrapy.Spider):
     name = "welbees_spider"
